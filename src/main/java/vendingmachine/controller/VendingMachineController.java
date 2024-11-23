@@ -4,7 +4,6 @@ import vendingmachine.model.domain.Coins;
 import vendingmachine.model.domain.Products;
 import vendingmachine.model.domain.VendingMachine;
 import vendingmachine.model.service.VendingMachineService;
-import vendingmachine.util.RandomUtil;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
 
