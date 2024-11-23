@@ -23,4 +23,13 @@ public class OutputView {
     public static void promptInputMoney() {
         System.out.println("\n투입 금액을 입력해 주세요.");
     }
+
+    public static void promptBuying(int inputMoney) {
+        System.out.println("\n투입 금액: " + inputMoney);
+        System.out.println("구매할 상품명을 입력해주세요.");
+    }
+
+    public static void promptErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

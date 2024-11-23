@@ -3,7 +3,7 @@ package vendingmachine.model.domain;
 public class Product {
     private final String productName;
     private final int price;
-    private final int quantity;
+    private int quantity;
 
     public Product(String productName, int price, int quantity) {
         validateProductName(productName);
@@ -30,5 +30,24 @@ public class Product {
         if (quantity < 0) {
             throw new IllegalArgumentException("[ERROR] 상품 수량은 0 이상이어야 합니다.");
         }
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public boolean isNameSame(String inputProductName) {
+        return this.productName.equals(inputProductName);
+    }
+
+    public boolean isQuantityZero() {
+        return this.quantity == 0;
+    }
+
+    public void decreaseQuantity() {
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("[ERROR] 해당 상품은 품절되었습니다.");
+        }
+        this.quantity -= 1;
     }
 }
