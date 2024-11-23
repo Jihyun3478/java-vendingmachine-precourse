@@ -1,16 +1,16 @@
 package vendingmachine.model.domain;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 import vendingmachine.Coin;
 
 public class Coins {
-    private final Map<Coin, Integer> coins = new HashMap<>();
+    private final Map<Coin, Integer> coins = new EnumMap<>(Coin.class);
 
     public int calculateTotalCoinAmount() {
         int totalCoinAmount = 0;
-        for(Map.Entry<Coin, Integer> entry : coins.entrySet()) {
+        for (Map.Entry<Coin, Integer> entry : coins.entrySet()) {
             Coin coin = entry.getKey();
             int coinCount = entry.getValue();
             totalCoinAmount += coin.getAmount() * coinCount;
@@ -20,5 +20,9 @@ public class Coins {
 
     public void addCoin(Coin coin) {
         coins.put(coin, coins.getOrDefault(coin, 0) + 1);
+    }
+
+    public Map<Coin, Integer> getAllCoins() {
+        return new EnumMap<>(coins);
     }
 }

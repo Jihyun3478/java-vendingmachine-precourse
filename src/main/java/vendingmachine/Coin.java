@@ -21,15 +21,15 @@ public enum Coin {
 
     public static List<Integer> getAmounts() {
         List<Integer> amounts = new ArrayList<>();
-        for(Coin coin : Coin.values()) {
+        for (Coin coin : Coin.values()) {
             amounts.add(coin.amount);
         }
         return amounts;
     }
 
     public static Coin from(int amount) {
-        for(Coin coin : values()) {
-            if(coin.getAmount() == amount) {
+        for (Coin coin : values()) {
+            if (coin.getAmount() == amount) {
                 return coin;
             }
         }
