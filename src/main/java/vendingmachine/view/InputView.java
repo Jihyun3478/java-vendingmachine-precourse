@@ -14,4 +14,9 @@ public class InputView {
         String products = Console.readLine();
         return Parser.parseProducts(products);
     }
+
+    public static int inputMoney() {
+        String money = Console.readLine();
+        return Integer.parseInt(money);
+    }
 }

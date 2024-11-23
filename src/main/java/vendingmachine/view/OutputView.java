@@ -19,4 +19,8 @@ public class OutputView {
     public static void promptInputProducts() {
         System.out.println("\n상품명과 가격, 수량을 입력해 주세요.");
     }
+
+    public static void promptInputMoney() {
+        System.out.println("\n투입 금액을 입력해 주세요.");
+    }
 }
