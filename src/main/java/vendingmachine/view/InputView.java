@@ -6,18 +6,36 @@ import vendingmachine.util.Parser;
 
 public class InputView {
     public static int vendingMachineHave() {
-        String money = Console.readLine();
-        return Integer.parseInt(money);
+        while (true) {
+            try {
+                String money = Console.readLine();
+                return Parser.parseInteger(money);
+            } catch (IllegalArgumentException e) {
+                OutputView.promptErrorMessage(e.getMessage());
+            }
+        }
     }
 
     public static Products buyProducts() {
-        String products = Console.readLine();
-        return Parser.parseProducts(products);
+        while (true) {
+            try {
+                String products = Console.readLine();
+                return Parser.parseProducts(products);
+            } catch (IllegalArgumentException e) {
+                OutputView.promptErrorMessage(e.getMessage());
+            }
+        }
     }
 
     public static int inputMoney() {
-        String money = Console.readLine();
-        return Integer.parseInt(money);
+        while (true) {
+            try {
+                String money = Console.readLine();
+                return Parser.parseInteger(money);
+            } catch (IllegalArgumentException e) {
+                OutputView.promptErrorMessage(e.getMessage());
+            }
+        }
     }
 
     public static String buyProduct() {
