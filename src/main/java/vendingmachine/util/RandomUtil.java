@@ -1,7 +1,7 @@
 package vendingmachine.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import vendingmachine.Coin;
+import vendingmachine.model.domain.Coin;
 import vendingmachine.model.domain.Coins;
 
 public class RandomUtil {
