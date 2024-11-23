@@ -3,6 +3,7 @@ package vendingmachine.util;
 import static vendingmachine.constant.ErrorMessage.MONEY_SHOULD_BE_NUMBER;
 import static vendingmachine.constant.ErrorMessage.MONEY_SHOULD_BE_POSITIVE;
 import static vendingmachine.constant.ErrorMessage.INVALID_PRODUCT_FORMAT;
+import static vendingmachine.constant.NumberConstant.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,11 @@ import vendingmachine.model.domain.Product;
 import vendingmachine.model.domain.Products;
 
 public class Parser {
+    private static final String SEMICOLON = ";";
+    private static final String LEFT_BRACKET = "[";
+    private static final String RIGHT_BRACKET = "]";
+    private static final String COMMA = ",";
+
     public static int parseInteger(String input) {
         try {
             int money = Integer.parseInt(input);
@@ -33,7 +39,7 @@ public class Parser {
     }
 
     private static List<Product> parseProductList(String inputProducts) {
-        String[] splitProducts = inputProducts.split(";");
+        String[] splitProducts = inputProducts.split(SEMICOLON);
         List<Product> products = new ArrayList<>();
 
         for (String splitProduct : splitProducts) {
@@ -45,16 +51,16 @@ public class Parser {
     }
 
     private static void validateProductFormat(String productInfo) {
-        if (!productInfo.startsWith("[") || !productInfo.endsWith("]")) {
+        if (!productInfo.startsWith(LEFT_BRACKET) || !productInfo.endsWith(RIGHT_BRACKET)) {
             throw new IllegalArgumentException(INVALID_PRODUCT_FORMAT.getMessage());
         }
     }
 
     private static Product parseProduct(String productInfo) {
         String content = productInfo.substring(1, productInfo.length() - 1);
-        String[] splitProductInfo = content.split(",");
+        String[] splitProductInfo = content.split(COMMA);
 
-        if (splitProductInfo.length != 3) {
+        if (splitProductInfo.length != PRODUCTS_LENGTH) {
             throw new IllegalArgumentException(INVALID_PRODUCT_FORMAT.getMessage());
         }
 

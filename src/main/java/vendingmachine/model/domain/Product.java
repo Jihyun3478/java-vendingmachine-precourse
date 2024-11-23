@@ -4,6 +4,7 @@ import static vendingmachine.constant.ErrorMessage.INVALID_PRODUCT_NAME;
 import static vendingmachine.constant.ErrorMessage.INVALID_PRODUCT_PRICE;
 import static vendingmachine.constant.ErrorMessage.INVALID_PRODUCT_QUANTITY;
 import static vendingmachine.constant.ErrorMessage.PRODUCT_SOLD_OUT;
+import static vendingmachine.constant.NumberConstant.*;
 
 public class Product {
     private final String productName;
@@ -26,7 +27,7 @@ public class Product {
     }
 
     private void validatePrice(int price) {
-        if (price < 100 || price % 10 != 0) {
+        if (price < MINIMUM_MONEY_PRICE || price % DIVIDE_MONEY_UNIT != 0) {
             throw new IllegalArgumentException(INVALID_PRODUCT_PRICE.getMessage());
         }
     }
