@@ -1,7 +1,8 @@
 package vendingmachine.model.domain;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Coin {
     COIN_500(500),
@@ -20,19 +21,15 @@ public enum Coin {
     }
 
     public static List<Integer> getAmounts() {
-        List<Integer> amounts = new ArrayList<>();
-        for (Coin coin : Coin.values()) {
-            amounts.add(coin.amount);
-        }
-        return amounts;
+        return Arrays.stream(Coin.values())
+            .map(Coin::getAmount)
+            .collect(Collectors.toList());
     }
 
     public static Coin from(int amount) {
-        for (Coin coin : values()) {
-            if (coin.getAmount() == amount) {
-                return coin;
-            }
-        }
-        throw new IllegalArgumentException("[ERROR] 유효하지 않은 동전 금액입니다.");
+        return Arrays.stream(values())
+            .filter(coin -> coin.getAmount() == amount)
+            .findAny()
+            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 유효하지 않은 동전 금액입니다."));
     }
 }
