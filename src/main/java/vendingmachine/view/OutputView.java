@@ -15,4 +15,8 @@ public class OutputView {
             System.out.printf("%d원 - %d개%n", coin.getAmount(), coinCount);
         }
     }
+
+    public static void promptInputProducts() {
+        System.out.println("\n상품명과 가격, 수량을 입력해 주세요.");
+    }
 }

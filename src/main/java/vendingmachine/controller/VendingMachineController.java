@@ -1,6 +1,7 @@
 package vendingmachine.controller;
 
 import vendingmachine.model.domain.Coins;
+import vendingmachine.model.domain.Products;
 import vendingmachine.model.domain.VendingMachine;
 import vendingmachine.util.RandomUtil;
 import vendingmachine.view.InputView;
@@ -11,8 +12,12 @@ public class VendingMachineController {
         OutputView.promptInputMachineHave();
         int money = InputView.vendingMachineHave();
 
-        VendingMachine vendingMachineCoins = getVendingMachine(money);
-        OutputView.promptMachineHave(vendingMachineCoins);
+        VendingMachine vendingMachine = getVendingMachine(money);
+        OutputView.promptMachineHave(vendingMachine);
+
+        OutputView.promptInputProducts();
+        Products products = InputView.buyProducts();
+        vendingMachine.addProducts(products);
     }
 
     private static VendingMachine getVendingMachine(int money) {
