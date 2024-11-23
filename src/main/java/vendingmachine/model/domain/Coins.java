@@ -7,13 +7,9 @@ public class Coins {
     private final Map<Coin, Integer> coins = new EnumMap<>(Coin.class);
 
     public int calculateTotalCoinAmount() {
-        int totalCoinAmount = 0;
-        for (Map.Entry<Coin, Integer> entry : coins.entrySet()) {
-            Coin coin = entry.getKey();
-            int coinCount = entry.getValue();
-            totalCoinAmount += coin.getAmount() * coinCount;
-        }
-        return totalCoinAmount;
+        return coins.entrySet().stream()
+            .mapToInt(entry -> entry.getKey().getAmount() * entry.getValue())
+            .sum();
     }
 
     public void addCoin(Coin coin) {
