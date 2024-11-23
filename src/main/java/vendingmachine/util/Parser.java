@@ -1,12 +1,28 @@
 package vendingmachine.util;
 
-import vendingmachine.model.domain.Product;
-import vendingmachine.model.domain.Products;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import vendingmachine.model.domain.Product;
+import vendingmachine.model.domain.Products;
+
 public class Parser {
+    public static int parseInteger(String input) {
+        try {
+            int money = Integer.parseInt(input);
+            validateNegative(money);
+            return money;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 금액은 숫자여야 합니다.");
+        }
+    }
+
+    private static void validateNegative(int money) {
+        if(money < 0) {
+            throw new IllegalArgumentException("[ERROR] 금액은 양수여야 합니다.");
+        }
+    }
+
     public static Products parseProducts(String inputProducts) {
         List<Product> products = parseProductList(inputProducts);
         return new Products(products);
