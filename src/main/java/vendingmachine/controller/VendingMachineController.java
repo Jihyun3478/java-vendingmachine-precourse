@@ -43,6 +43,8 @@ public class VendingMachineController {
                 OutputView.promptErrorMessage(e.getMessage());
             }
         }
+        Coins change = vendingMachine.returnChange(inputMoney);
+        OutputView.promptReturnChange(change);
     }
 
     private static VendingMachine getVendingMachine(int money) {

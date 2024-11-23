@@ -25,4 +25,27 @@ public class Coins {
     public Map<Coin, Integer> getAllCoins() {
         return new EnumMap<>(coins);
     }
+
+    public Coins calculateChange(int amount) {
+        Coins change = new Coins();
+
+        for (Coin coin : Coin.values()) {
+            int coinAmount = coin.getAmount();
+            int coinCount = coins.getOrDefault(coin, 0);
+
+            int neededCoins = amount / coinAmount;
+            int usedCoins = Math.min(neededCoins, coinCount);
+
+            if (usedCoins > 0) {
+                change.addMultipleCoins(coin, usedCoins);
+                coins.put(coin, coinCount - usedCoins);
+                amount -= coinAmount * usedCoins;
+            }
+        }
+        return change;
+    }
+
+    public void addMultipleCoins(Coin coin, int count) {
+        coins.put(coin, coins.getOrDefault(coin, 0) + count);
+    }
 }

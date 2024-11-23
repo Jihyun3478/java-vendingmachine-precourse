@@ -31,4 +31,8 @@ public class VendingMachine {
     public void purchaseProduct(String buyProductName) {
         products.decreaseProductQuantity(buyProductName);
     }
+
+    public Coins returnChange(int amount) {
+        return coins.calculateChange(amount);
+    }
 }
