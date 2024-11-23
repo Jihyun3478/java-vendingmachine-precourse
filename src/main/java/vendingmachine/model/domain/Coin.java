@@ -1,5 +1,7 @@
 package vendingmachine.model.domain;
 
+import static vendingmachine.constant.ErrorMessage.*;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +32,6 @@ public enum Coin {
         return Arrays.stream(values())
             .filter(coin -> coin.getAmount() == amount)
             .findAny()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 유효하지 않은 동전 금액입니다."));
+            .orElseThrow(() -> new IllegalArgumentException(INVALID_COIN_MONEY.getMessage()));
     }
 }

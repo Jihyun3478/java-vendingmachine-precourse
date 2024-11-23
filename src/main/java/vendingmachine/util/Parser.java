@@ -1,5 +1,9 @@
 package vendingmachine.util;
 
+import static vendingmachine.constant.ErrorMessage.MONEY_SHOULD_BE_NUMBER;
+import static vendingmachine.constant.ErrorMessage.MONEY_SHOULD_BE_POSITIVE;
+import static vendingmachine.constant.ErrorMessage.INVALID_PRODUCT_FORMAT;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,13 +17,13 @@ public class Parser {
             validateNegative(money);
             return money;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException(MONEY_SHOULD_BE_NUMBER.getMessage());
         }
     }
 
     private static void validateNegative(int money) {
         if(money < 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 양수여야 합니다.");
+            throw new IllegalArgumentException(MONEY_SHOULD_BE_POSITIVE.getMessage());
         }
     }
 
@@ -42,7 +46,7 @@ public class Parser {
 
     private static void validateProductFormat(String productInfo) {
         if (!productInfo.startsWith("[") || !productInfo.endsWith("]")) {
-            throw new IllegalArgumentException("[ERROR] 개별 상품은 대괄호([])로 감싸져 있어야 합니다.");
+            throw new IllegalArgumentException(INVALID_PRODUCT_FORMAT.getMessage());
         }
     }
 
@@ -51,7 +55,7 @@ public class Parser {
         String[] splitProductInfo = content.split(",");
 
         if (splitProductInfo.length != 3) {
-            throw new IllegalArgumentException("[ERROR] 상품명, 가격, 수량은 쉼표(,)로 구분되어야 합니다.");
+            throw new IllegalArgumentException(INVALID_PRODUCT_FORMAT.getMessage());
         }
 
         String name = splitProductInfo[0].trim();

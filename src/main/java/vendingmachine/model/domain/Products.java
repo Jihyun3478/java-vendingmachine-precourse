@@ -1,5 +1,8 @@
 package vendingmachine.model.domain;
 
+import static vendingmachine.constant.ErrorMessage.PRODUCT_IS_NOT_EXIST;
+import static vendingmachine.constant.ErrorMessage.NOT_ENOUGH_MONEY;
+
 import java.util.List;
 
 public class Products {
@@ -13,7 +16,7 @@ public class Products {
         return products.stream()
             .filter(product -> product.isNameSame(productName))
             .findAny()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 상품이 존재하지 않습니다."))
+            .orElseThrow(() -> new IllegalArgumentException(PRODUCT_IS_NOT_EXIST.getMessage()))
             .getPrice();
     }
 
@@ -22,7 +25,7 @@ public class Products {
             .filter(product -> !product.isQuantityZero())
             .mapToInt(Product::getPrice)
             .min()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 구매 가능한 상품이 없습니다."));
+            .orElseThrow(() -> new IllegalArgumentException(NOT_ENOUGH_MONEY.getMessage()));
     }
 
     public boolean areSoldOut() {
@@ -33,7 +36,7 @@ public class Products {
         Product product = products.stream()
             .filter(name -> name.isNameSame(productName))
             .findAny()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 상품이 존재하지 않습니다."));
+            .orElseThrow(() -> new IllegalArgumentException(PRODUCT_IS_NOT_EXIST.getMessage()));
 
         product.decreaseQuantity();
     }

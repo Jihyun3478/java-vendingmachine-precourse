@@ -1,5 +1,10 @@
 package vendingmachine.model.domain;
 
+import static vendingmachine.constant.ErrorMessage.INVALID_PRODUCT_NAME;
+import static vendingmachine.constant.ErrorMessage.INVALID_PRODUCT_PRICE;
+import static vendingmachine.constant.ErrorMessage.INVALID_PRODUCT_QUANTITY;
+import static vendingmachine.constant.ErrorMessage.PRODUCT_SOLD_OUT;
+
 public class Product {
     private final String productName;
     private final int price;
@@ -16,19 +21,19 @@ public class Product {
 
     private void validateProductName(String productName) {
         if (productName == null || productName.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 상품명은 비어 있을 수 없습니다.");
+            throw new IllegalArgumentException(INVALID_PRODUCT_NAME.getMessage());
         }
     }
 
     private void validatePrice(int price) {
         if (price < 100 || price % 10 != 0) {
-            throw new IllegalArgumentException("[ERROR] 상품 가격은 100원부터 시작하며 10원으로 나누어 떨어져야 합니다.");
+            throw new IllegalArgumentException(INVALID_PRODUCT_PRICE.getMessage());
         }
     }
 
     private void validateQuantity(int quantity) {
         if (quantity < 0) {
-            throw new IllegalArgumentException("[ERROR] 상품 수량은 0 이상이어야 합니다.");
+            throw new IllegalArgumentException(INVALID_PRODUCT_QUANTITY.getMessage());
         }
     }
 
@@ -46,7 +51,7 @@ public class Product {
 
     public void decreaseQuantity() {
         if (quantity <= 0) {
-            throw new IllegalArgumentException("[ERROR] 해당 상품은 품절되었습니다.");
+            throw new IllegalArgumentException(PRODUCT_SOLD_OUT.getMessage());
         }
         this.quantity -= 1;
     }
